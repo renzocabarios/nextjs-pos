@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 import { CreateItemDto, UpdateItemDto } from './dto';
 import { Item, ItemDocument } from './entities/item.entity';
 
@@ -11,8 +11,8 @@ export class ItemService {
   ) {}
 
   // TODO: ADD TRANSACTION
-  async create(dto: CreateItemDto) {
-    return await new this.model(dto).save();
+  async create(dto: CreateItemDto, session: ClientSession) {
+    return await this.model.create([dto], { session });
   }
 
   async findAll() {

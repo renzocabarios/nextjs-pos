@@ -11,19 +11,46 @@ import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { STATUS, MESSAGE } from '../constant';
+import { InjectConnection } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 
 @Controller('item')
 export class ItemController {
-  constructor(private readonly service: ItemService) {}
+  constructor(
+    private readonly service: ItemService,
+    @InjectConnection() private readonly connection: mongoose.Connection,
+  ) {}
 
   @Post()
   async create(@Body() createItemDto: CreateItemDto) {
-    const data = await this.service.create(createItemDto);
-    return {
+    let response = {
       status: STATUS.SUCCESS,
       message: MESSAGE.SUCCESS_CREATE,
-      data: [data],
+      data: [],
     };
+
+    const session = await this.connection.startSession();
+
+    await session
+      .withTransaction(async () => {
+        const data = await this.service.create(createItemDto, session);
+        response = {
+          status: STATUS.SUCCESS,
+          message: MESSAGE.SUCCESS_CREATE,
+          data: [data],
+        };
+      })
+      .catch((e) => {
+        response = {
+          status: STATUS.FAIL,
+          message: e,
+          data: [],
+        };
+      });
+
+    session.endSession();
+
+    return response;
   }
 
   @Get()
