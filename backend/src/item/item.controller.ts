@@ -9,85 +9,99 @@ import {
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { BaseItemDto, CreateItemDto, UpdateItemDto } from '../interfaces';
+import { METHOD, RESOURCE } from '../constant';
 import { InjectConnection } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
+import { ResponseService } from 'src/services/response/response.service';
 
-@Controller('item')
+@Controller(RESOURCE.ITEM)
 export class ItemController {
   constructor(
     private readonly service: ItemService,
+    private readonly response: ResponseService,
     @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
   @Post()
   async create(@Body() createItemDto: CreateItemDto) {
-    let response = {
-      status: STATUS.SUCCESS,
-      message: MESSAGE.SUCCESS_CREATE,
-      data: [],
-    };
+    let message = {};
 
     const session = await this.connection.startSession();
 
-    await session
-      .withTransaction(async () => {
-        const data = await this.service.create(createItemDto, session);
-        response = {
-          status: STATUS.SUCCESS,
-          message: MESSAGE.SUCCESS_CREATE,
-          data: [data],
-        };
-      })
-      .catch((e) => {
-        response = {
-          status: STATUS.FAIL,
-          message: e,
-          data: [],
-        };
-      });
+    await session.withTransaction(async () => {
+      const data = await this.service.create(createItemDto, session);
+      message = this.response.success<BaseItemDto>(
+        RESOURCE.ITEM,
+        METHOD.CREATE,
+        data,
+      );
+
+      if (!data) throw new Error('');
+    });
 
     session.endSession();
-
-    return response;
+    return message;
   }
 
   @Get()
   async findAll() {
     const data = await this.service.findAll();
-    return {
-      status: STATUS.SUCCESS,
-      message: MESSAGE.SUCCESS_FETCH,
+    return this.response.success<BaseItemDto>(
+      RESOURCE.ITEM,
+      METHOD.FETCH,
       data,
-    };
+    );
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const data = await this.service.findOne(id);
-    return {
-      status: STATUS.SUCCESS,
-      message: MESSAGE.SUCCESS_FETCH,
-      data: [data],
-    };
+    return this.response.success<BaseItemDto>(RESOURCE.ITEM, METHOD.FETCH, [
+      data,
+    ]);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() dto: UpdateItemDto) {
-    const data = await this.service.update(id, dto);
-    return {
-      status: STATUS.SUCCESS,
-      message: MESSAGE.SUCCESS_UPDATE,
-      data: [data],
-    };
+    let message = {};
+
+    const session = await this.connection.startSession();
+
+    await session.withTransaction(async () => {
+      const data = await this.service.update(id, dto, session);
+
+      message = this.response.success<BaseItemDto>(
+        RESOURCE.ITEM,
+        METHOD.UPDATE,
+        [data],
+      );
+
+      if (!data) throw new Error('');
+    });
+
+    session.endSession();
+    return message;
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    const data = await this.service.remove(id);
-    return {
-      status: STATUS.SUCCESS,
-      message: MESSAGE.SUCCESS_DELETE,
-      data: [data],
-    };
+    let message = {};
+
+    const session = await this.connection.startSession();
+
+    await session.withTransaction(async () => {
+      const data = await this.service.remove(id, session);
+
+      message = this.response.success<BaseItemDto>(
+        RESOURCE.ITEM,
+        METHOD.DELETE,
+        [data],
+      );
+
+      if (!data) throw new Error('');
+    });
+
+    session.endSession();
+    return message;
   }
 }

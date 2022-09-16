@@ -1,8 +1,8 @@
 export default {
-  SUCCESS_FETCH: 'Successfully fetched',
-  SUCCESS_CREATE: 'Successfully created',
-  SUCCESS_UPDATE: 'Successfully updated',
-  SUCCESS_DELETE: 'Successfully deleted',
+  SUCCESS_FETCH: 'fetch',
+  SUCCESS_CREATE: 'create',
+  SUCCESS_UPDATE: 'update',
+  SUCCESS_DELETE: 'delete',
 };
 
 // TODO: TURN MESSAGES INTO A UTILITY
