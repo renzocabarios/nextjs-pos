@@ -14,7 +14,7 @@ export class TransactionService {
     private readonly model: Model<TransactionDocument>,
   ) {}
 
-  async create(dto: CreateTransactionDto, session: ClientSession) {
+  async create(dto: CreateTransactionDto<any>, session: ClientSession) {
     return await this.model.create([dto], { session });
   }
 

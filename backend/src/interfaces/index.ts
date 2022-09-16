@@ -1,12 +1,11 @@
 import { PartialType } from '@nestjs/mapped-types';
 
-export class BaseTransactionDto {
+export class BaseTransactionDto<T> {
   _id?: string;
-  item: string;
-  basePrice: number;
+  items: T[];
 }
 
-export class CreateTransactionDto extends BaseTransactionDto {}
+export class CreateTransactionDto<T> extends BaseTransactionDto<T> {}
 
 export class UpdateTransactionDto extends PartialType(CreateTransactionDto) {}
 
