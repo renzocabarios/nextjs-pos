@@ -175,3 +175,109 @@
   ]
 }
 ```
+
+
+## GET TRANSACTION
+- PATH: `/transaction`
+- METHOD: GET
+
+### REQUEST
+##### HEADER
+`N/A`
+
+##### BODY
+`N/A`
+
+### RESPONSE
+
+```
+{
+  "status": "success",
+  "message": "fetch transaction success",
+  "data": [
+    {
+      "_id": "6324906a5afcbccaf6bb4e5e",
+      "items": [
+        "63248f440cefb4bf175d5ffc"
+      ],
+      "deleted": false,
+      "createdAt": "2022-09-16T15:04:10.550Z",
+      "updatedAt": "2022-09-16T15:04:10.550Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
+## GET TRANSACTION BY ID
+- PATH: `/transaction/:id`
+- METHOD: GET
+
+### REQUEST
+##### HEADER
+`N/A`
+
+##### BODY
+`N/A`
+
+### RESPONSE
+
+```
+{
+  "status": "success",
+  "message": "fetch transaction success",
+  "data": [
+    {
+      "_id": "6324906a5afcbccaf6bb4e5e",
+      "items": [
+        "63248f440cefb4bf175d5ffc"
+      ],
+      "deleted": false,
+      "createdAt": "2022-09-16T15:04:10.550Z",
+      "updatedAt": "2022-09-16T15:04:10.550Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
+
+## CREATE TRANSACTION
+- PATH: `/transaction`
+- METHOD: POST
+
+### REQUEST
+##### HEADER
+`N/A`
+
+##### BODY
+```
+{
+  "items": [
+    "6324cc95b6958cd019e7f287",
+    "6324cc95b6958cd019e7f287"
+  ]
+}
+```
+
+### RESPONSE
+
+```
+{
+  "status": "success",
+  "message": "create transaction success",
+  "data": [
+    {
+      "items": [
+        "6324cc95b6958cd019e7f287",
+        "6324cc95b6958cd019e7f287"
+      ],
+      "deleted": false,
+      "_id": "632501d903d5a454839a4b20",
+      "createdAt": "2022-09-16T23:08:09.529Z",
+      "updatedAt": "2022-09-16T23:08:09.529Z",
+      "__v": 0
+    }
+  ]
+}
+```
