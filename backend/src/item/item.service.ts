@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
-import { CreateItemDto, UpdateItemDto } from './dto';
+import { CreateItemDto, UpdateItemDto } from '../interfaces';
 import { Item, ItemDocument } from './entities/item.entity';
 
 @Injectable()

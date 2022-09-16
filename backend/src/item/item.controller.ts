@@ -8,9 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
-import { CreateItemDto } from './dto/create-item.dto';
-import { UpdateItemDto } from './dto/update-item.dto';
-import { STATUS, MESSAGE } from '../constant';
+import { BaseItemDto, CreateItemDto, UpdateItemDto } from '../interfaces';
 import { InjectConnection } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 
