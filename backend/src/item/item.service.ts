@@ -28,7 +28,6 @@ export class ItemService {
       .exec();
   }
 
-  // TODO: ADD TRANSACTION
   async remove(_id: string, session: ClientSession) {
     return await this.model
       .findOneAndUpdate({ _id }, { deleted: true }, { new: true, session })
