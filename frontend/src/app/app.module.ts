@@ -7,7 +7,6 @@ import { reducers, metaReducers } from './states';
 import { ItemEffects } from './states/item';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     EffectsModule.forRoot([ItemEffects]),
     HttpClientModule,
-    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
