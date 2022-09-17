@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, tap } from 'rxjs/operators';
 import { IHttpResponse, IItem } from 'src/app/interfaces';
 import { ApiService } from '../../services/api/api.service';
 import * as ItemAction from './item.action';
 
 @Injectable()
 export class ItemEffects {
-  constructor(private actions$: Actions<any>, private api: ApiService) {}
+  constructor(
+    private actions$: Actions<any>,
+    private api: ApiService,
+    private router: Router
+  ) {}
 
   fetchItems$ = createEffect(() =>
     this.actions$.pipe(
@@ -31,6 +35,24 @@ export class ItemEffects {
       )
     )
   );
+
+  updateItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ItemAction.updateItem),
+      switchMap(({ data: { _id, ...rest } }) => {
+        return this.api
+          .update<IHttpResponse<IItem>>(`item/${_id}`, rest)
+          .pipe(map(() => ItemAction.updateItemSucces()));
+      })
     )
+  );
+
+  updateItemSucces$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ItemAction.updateItemSucces),
+        tap(() => this.router.navigate(['/item']))
+      ),
+    { dispatch: false }
   );
 }
