@@ -11,6 +11,10 @@ const transacReducer = createReducer(
   on(actions.addItemToCart, (state, { _id }) => ({
     ...state,
     cart: [_id, ...state.cart],
+  })),
+  on(actions.addTransactionSuccess, (state, d) => ({
+    ...state,
+    cart: [],
   }))
 );
 
