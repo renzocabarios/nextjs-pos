@@ -11,6 +11,10 @@ export interface IItemState {
   entries: IItem[];
 }
 
+export interface ITransacState {
+  cart: string[];
+}
+
 export type ResponseStatus = 'success' | 'fail';
 export type ResponseMessage = string;
 export type ResponseData<T> = T[];
