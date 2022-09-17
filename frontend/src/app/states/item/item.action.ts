@@ -20,3 +20,4 @@ export const updateItem = createAction(
   props<{ data: IItem }>()
 );
 
+export const updateItemSucces = createAction('[Item API] Update Item Success');
