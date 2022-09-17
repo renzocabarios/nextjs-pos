@@ -1,1 +1,16 @@
-<p>transaction-page works!</p>
+<screen-layout>
+  <div
+    class="w-full h-full grid grid-cols-5 grid-rows-5 gap-5 p-10 justify-items-start"
+  >
+    <div *ngFor="let d of data" class="bg-sky-700 text-white p-5">
+      <h1>ID: {{ d._id }}</h1>
+      <h1>NAME: {{ d.name }}</h1>
+      <h1>BASE PRICE: {{ d.basePrice }}</h1>
+      <main-btn title="Add to Card" (onClick)="addCart(d._id)"></main-btn>
+    </div>
+  </div>
+</screen-layout>
+
+<div class="fixed bottom-10 right-10">
+  <main-btn title="Confirm Transaction" (onClick)="addTransaction()"></main-btn>
+</div>
