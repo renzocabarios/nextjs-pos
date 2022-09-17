@@ -12,7 +12,7 @@ export class ItemEffects {
 
   fetchItems$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ItemAction.fetchItems),
+      ofType(ItemAction.fetchItems, ItemAction.deleteItemSucces),
       switchMap(() =>
         this.api
           .get<IHttpResponse<IItem>>('item')
@@ -27,8 +27,10 @@ export class ItemEffects {
       switchMap(({ _id }) =>
         this.api
           .delete<IHttpResponse<IItem>>(`item/${_id}`)
-          .pipe(map(() => ItemAction.fetchItems()))
+          .pipe(map(() => ItemAction.deleteItemSucces()))
       )
+    )
+  );
     )
   );
 }
