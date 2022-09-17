@@ -1,1 +1,18 @@
-<p>datatable works!</p>
+<table class="w-full">
+  <thead class="bg-sky-700 text-white">
+    <th *ngFor="let head of header" class="p-3">{{ head }}</th>
+    <th class="p-3">Action</th>
+  </thead>
+  <tbody class="text-center">
+    <tr *ngFor="let d of data">
+      <td *ngFor="let key of keys" class="p-3">{{ d[key] }}</td>
+      <td class="p-3">
+        <main-btn
+          *ngFor="let action of actions"
+          [title]="action.title"
+          (onClick)="action.onClick(d._id)"
+        ></main-btn>
+      </td>
+    </tr>
+  </tbody>
+</table>
