@@ -10,6 +10,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'transact',
+    loadChildren: () =>
+      import('./pages/transaction-page/transaction-page.module').then(
+        (m) => m.TransactionPageModule
+      ),
+  },
+  {
     path: 'home',
     redirectTo: '',
     pathMatch: 'full',
