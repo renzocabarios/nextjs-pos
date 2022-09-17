@@ -12,3 +12,6 @@ export const deleteItem = createAction(
   '[Item API] Delete Item',
   props<{ _id: string }>()
 );
+
+export const deleteItemSucces = createAction('[Item API] Delete Item Success');
+
