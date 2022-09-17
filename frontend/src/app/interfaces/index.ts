@@ -1,6 +1,5 @@
 export interface IBaseModel {
   _id?: string;
-  deleted: boolean;
 }
 
 export interface IItem extends IBaseModel {
