@@ -31,7 +31,6 @@ export class EditComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.formGroup.value);
     const { name, basePrice } = this.formGroup.value;
     this.store.dispatch(
       updateItem({
