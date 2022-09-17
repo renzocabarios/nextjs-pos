@@ -55,4 +55,24 @@ export class ItemEffects {
       ),
     { dispatch: false }
   );
+
+  createItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ItemAction.createItem),
+      switchMap(({ data: { _id, ...rest } }) => {
+        return this.api
+          .post<IHttpResponse<IItem>>(`item`, rest)
+          .pipe(map(() => ItemAction.createItemSuccess()));
+      })
+    )
+  );
+
+  createItemSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ItemAction.createItemSuccess),
+        tap(() => this.router.navigate(['/item']))
+      ),
+    { dispatch: false }
+  );
 }

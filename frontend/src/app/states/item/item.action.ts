@@ -21,3 +21,10 @@ export const updateItem = createAction(
 );
 
 export const updateItemSucces = createAction('[Item API] Update Item Success');
+
+export const createItem = createAction(
+  '[Item API] Create Item',
+  props<{ data: IItem }>()
+);
+
+export const createItemSuccess = createAction('[Item API] Create Item Success');
