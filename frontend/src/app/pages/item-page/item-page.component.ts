@@ -49,4 +49,8 @@ export class ItemPageComponent implements OnInit {
       this.data = e;
     });
   }
+
+  add(): void {
+    this.router.navigateByUrl(`item/add`);
+  }
 }
