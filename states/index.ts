@@ -8,3 +8,11 @@ export const useItemsStore = create((set) => ({
     return set(() => ({ data: response.data }));
   },
 }));
+
+export const useTransactionsStore = create((set) => ({
+  items: [],
+  addItems: (items: any) =>
+    set((state: any) => {
+      return { items: [...state.items, items] };
+    }),
+}));
