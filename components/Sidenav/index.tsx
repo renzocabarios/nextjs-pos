@@ -2,7 +2,7 @@
 import React from "react";
 import style from "./style.module.css";
 import { useTransactionsStore } from "@/states";
-
+import Button from "../Button";
 export default function Sidenav({ children }: any) {
   const { items } = useTransactionsStore() as any;
 
@@ -20,6 +20,21 @@ export default function Sidenav({ children }: any) {
             </div>
           );
         })}
+        <div className={`${style.details_container}`}>
+          <div className={`${style.header_container}  `}>
+            <h5 className="text-white-900">Total</h5>
+            <h5 className="text-secondary-500">
+              ₱
+              {items.reduce(
+                (acc: any, curr: any) => curr.quantity * curr.price + acc,
+                0
+              )}
+              .00
+            </h5>
+          </div>
+
+          <Button>Checkout</Button>
+        </div>
       </div>
       <div className={style.container}>
         <div className={style.divider}></div>
