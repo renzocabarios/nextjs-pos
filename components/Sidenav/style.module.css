@@ -9,7 +9,7 @@
 }
 
 .container {
-  @apply min-h-full flex p-5;
+  @apply min-h-full flex p-5 bg-black-700;
 }
 
 .sidenav {
