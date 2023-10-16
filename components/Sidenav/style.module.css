@@ -1,19 +1,18 @@
 .divider {
   width: 25vw;
-  @apply bg-black-500 min-h-screen;
+  @apply min-h-screen;
 }
 
 .content {
-  width: 25vw;
+  width: 75vw;
   @apply min-h-full;
 }
 
 .container {
-  width: 75vw;
-  @apply min-h-full flex;
+  @apply min-h-full flex p-5;
 }
 
 .sidenav {
-  min-width: 25vw;
-  @apply bg-black-500 z-40 py-4 px-32 fixed top-0  flex justify-between items-center h-full;
+  width: 25vw;
+  @apply bg-black-500 z-40 fixed top-0 flex justify-between items-center h-full;
 }
