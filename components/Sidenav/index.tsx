@@ -14,7 +14,7 @@ export default function Sidenav({ children }: any) {
             <div className={style.item_container} key={e._id}>
               <div className={style.row}>
                 <h5 className="text-white-900">{e.name}</h5>
-                <p className="text-secondary-500">2x</p>
+                <p className="text-secondary-500">{e.quantity}x</p>
               </div>
               <h5 className="text-secondary-500">₱{e.price}.00</h5>
             </div>
