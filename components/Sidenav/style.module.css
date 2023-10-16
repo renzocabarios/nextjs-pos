@@ -14,5 +14,13 @@
 
 .sidenav {
   width: 25vw;
-  @apply bg-black-500 z-40 fixed top-0 flex justify-between items-center h-full;
+  @apply bg-black-500 z-40 fixed top-0 flex flex-col h-full p-4 gap-3 overflow-auto;
+}
+
+.item_container {
+  @apply flex justify-between items-center;
+}
+
+.row {
+  @apply flex gap-3 items-center;
 }
