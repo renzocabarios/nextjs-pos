@@ -13,6 +13,7 @@ export const useTransactionsStore = create((set) => ({
   items: [],
   addItems: (items: any) =>
     set((state: any) => {
+      items.quantity = 1;
       return { items: [...state.items, items] };
     }),
 }));
