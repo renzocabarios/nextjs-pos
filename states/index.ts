@@ -22,7 +22,7 @@ export const useTransactionsStore = create((set) => ({
       return { items: [...state.items, items] };
     }),
   createTransaction: async (items: any[]) => {
-    const response = (await post("transactions/", { items })).data;
+    (await post("transactions/", { items })).data;
     set(() => {
       return { items: [] };
     });
