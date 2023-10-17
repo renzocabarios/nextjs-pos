@@ -4,7 +4,8 @@
 
 .container {
   height: 10vh;
-  @apply bg-black-500 z-40 py-4 px-32 fixed top-0 w-full flex justify-between items-center;
+  width: 75vw;
+  @apply bg-black-500 z-40 py-4 px-10 fixed top-0 right-0 flex justify-between items-center;
 }
 
 .links_container {

@@ -3,6 +3,7 @@ import React from "react";
 import style from "./style.module.css";
 import { useTransactionsStore } from "@/states";
 import Button from "../Button";
+import Navbar from "../Navbar";
 export default function Sidenav({ children }: any) {
   const { items } = useTransactionsStore() as any;
   const { createTransaction } = useTransactionsStore() as any;
@@ -37,10 +38,10 @@ export default function Sidenav({ children }: any) {
               .00
             </h5>
           </div>
-
           <Button onClick={checkout}>Checkout</Button>
         </div>
       </div>
+      <Navbar />
       <div className={style.container}>
         <div className={style.divider}></div>
         <div className={style.content}>{children}</div>

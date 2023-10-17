@@ -3,22 +3,13 @@ import React from "react";
 import style from "./style.module.css";
 import { Button } from "@/components";
 
-export default function Sidenav() {
+export default function Navbar() {
   return (
     <>
       <div className={style.container}>
-        <h4>POS</h4>
-
-        <div className={style.links_container}>
-          <p>Marketplace</p>
-          <p>Community</p>
-          <p>Events</p>
-        </div>
-
-        <div className={style.links_container}>
-          <Button outlined>Sign In</Button>
-          <Button>Get Started</Button>
-        </div>
+        <Button>Transactions</Button>
+        <div></div>
+        <div></div>
       </div>
       <div className={style.divider}></div>
     </>
