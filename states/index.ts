@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { get } from "@/services/api";
+import { get, post } from "@/services/api";
 
 export const useItemsStore = create((set) => ({
   data: [],
@@ -16,4 +16,11 @@ export const useTransactionsStore = create((set) => ({
       items.quantity = 1;
       return { items: [...state.items, items] };
     }),
+  createTransaction: async (items: any[]) => {
+    const response = (await post("transactions/", { items })).data;
+    alert(response);
+    set(() => {
+      return { items: [] };
+    });
+  },
 }));
