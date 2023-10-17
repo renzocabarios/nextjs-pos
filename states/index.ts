@@ -11,6 +11,11 @@ export const useItemsStore = create((set) => ({
 
 export const useTransactionsStore = create((set) => ({
   items: [],
+  transactions: [],
+  getTransactions: async () => {
+    const response = (await get("transactions/")).data;
+    return set(() => ({ transactions: response.data }));
+  },
   addItems: (items: any) =>
     set((state: any) => {
       items.quantity = 1;
@@ -18,7 +23,6 @@ export const useTransactionsStore = create((set) => ({
     }),
   createTransaction: async (items: any[]) => {
     const response = (await post("transactions/", { items })).data;
-    alert(response);
     set(() => {
       return { items: [] };
     });
