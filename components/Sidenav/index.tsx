@@ -5,6 +5,11 @@ import { useTransactionsStore } from "@/states";
 import Button from "../Button";
 export default function Sidenav({ children }: any) {
   const { items } = useTransactionsStore() as any;
+  const { createTransaction } = useTransactionsStore() as any;
+
+  const checkout = () => {
+    createTransaction(items);
+  };
 
   return (
     <>
@@ -33,7 +38,7 @@ export default function Sidenav({ children }: any) {
             </h5>
           </div>
 
-          <Button>Checkout</Button>
+          <Button onClick={checkout}>Checkout</Button>
         </div>
       </div>
       <div className={style.container}>
